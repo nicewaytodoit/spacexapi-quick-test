@@ -1,0 +1,16 @@
+.rocket {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 20px;
+}
+
+.rocket__title {
+    margin-top: 0;
+}
+
+.rocket__close {
+    margin-top: 10px;
+}
