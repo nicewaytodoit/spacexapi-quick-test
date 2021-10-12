@@ -80,6 +80,7 @@ const Search = () => {
                 {!!emptySearch && <div className="search__event-empty">Sorry my love but there are no result for what you lookin for!</div>}
                 {!!rocketDetails && <Rocket {...rocketDetails} onClose={rocketCloseHandler} />}
                 <ul className="search__result" aria-label="search-result">
+                    {(resultList() || []).length > 0 && <h2 aria-label="result-title">Launches</h2>}
                     {(resultList() || []).map((obj: any, index: number) => { 
                         return (
                         <li 

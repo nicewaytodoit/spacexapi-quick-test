@@ -16,7 +16,8 @@ export const getData = ({
     url,
     responseCallback,
     rejectCallback
-} : IAxiosGet) => axios.get(url).then(responseCallback).catch(rejectCallback);
-
+} : IAxiosGet) => axios.get(url)
+                        .then(responseCallback)
+                        .catch(rejectCallback);
 
 export const strLower = (val: any) => String(val).toLowerCase();
