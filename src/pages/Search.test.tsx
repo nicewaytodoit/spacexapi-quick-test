@@ -68,6 +68,24 @@ describe('Search Main Page', () => {
         launches.forEach((launch) => expect(screen.getByText(launch?.mission_name)).toBeInTheDocument());
     });
 
+    it('should API be called with 50 rows limit', async () => {
+        const launches = data;
+
+        (getLaunches as jest.Mock).mockImplementation(({
+            records,
+            sort,
+            order,
+            response,
+            reject,
+        }) => response({data: launches}));
+
+        render(<Search />);
+        expect(getLaunches).toHaveBeenCalledTimes(1);
+
+        expect(getLaunches).toHaveBeenCalledWith(expect.objectContaining({ records: 50 }));
+
+    });
+
     it('should show data set size change on filter field change', async () => {
         const launches = data;
 
@@ -82,6 +100,7 @@ describe('Search Main Page', () => {
         render(<Search />);
 
         expect(getLaunches).toHaveBeenCalledTimes(1);
+
         await waitFor(() => expect(screen.getByLabelText("result-title")).toBeInTheDocument());
 
         const input = screen.getByLabelText('search-filter-input') as HTMLInputElement;
